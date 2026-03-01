@@ -3,13 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NovaWebStudio</title>
+<title>NovaWebStudio | Smart Builder</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* ===== GLOBAL ===== */
 
 *{
 margin:0;
@@ -21,20 +19,18 @@ body{
 font-family:'Inter',sans-serif;
 background:#0a0a0a;
 color:white;
-overflow-x:hidden;
 }
 
-/* ===== HERO ===== */
+/* HERO */
 
 .hero{
-min-height:100vh;
+height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:radial-gradient(circle at center,#141414,#0a0a0a);
-padding:20px;
+background:radial-gradient(circle at center,#1a1a1a,#0a0a0a);
 }
 
 .hero h1{
@@ -45,8 +41,8 @@ background:linear-gradient(90deg,#6a00ff,#00c3ff);
 }
 
 .hero p{
+opacity:0.7;
 margin-top:20px;
-opacity:0.8;
 font-size:20px;
 }
 
@@ -58,8 +54,8 @@ background:#6a00ff;
 color:white;
 text-decoration:none;
 font-weight:600;
-transition:0.3s;
 cursor:pointer;
+transition:0.3s;
 }
 
 .btn:hover{
@@ -67,10 +63,10 @@ transform:scale(1.1);
 background:#5200cc;
 }
 
-/* ===== CALCULATOR ===== */
+/* CALCULATOR */
 
 .section{
-padding:120px 10%;
+padding:100px 10%;
 text-align:center;
 }
 
@@ -81,7 +77,6 @@ border-radius:25px;
 max-width:750px;
 margin:auto;
 border:1px solid #1f1f1f;
-box-shadow:0 0 40px rgba(0,0,0,0.6);
 }
 
 .option{
@@ -92,66 +87,27 @@ padding:15px;
 margin:15px 0;
 background:#1a1a1a;
 border-radius:12px;
-transition:0.3s;
 }
-
-.option:hover{
-background:#222;
-}
-
-/* Toggle */
-
-.switch{
-position:relative;
-display:inline-block;
-width:50px;
-height:24px;
-}
-
-.switch input{
-opacity:0;
-width:0;
-height:0;
-}
-
-.slider{
-position:absolute;
-cursor:pointer;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:#555;
-transition:.4s;
-border-radius:24px;
-}
-
-.slider:before{
-position:absolute;
-content:"";
-height:18px;
-width:18px;
-left:4px;
-bottom:3px;
-background:white;
-transition:.4s;
-border-radius:50%;
-}
-
-input:checked + .slider{
-background:#6a00ff;
-}
-
-input:checked + .slider:before{
-transform:translateX(24px);
-}
-
-/* Total */
 
 .total{
 margin-top:30px;
 font-size:30px;
 font-weight:800;
+color:#00c3ff;
+transition:0.3s;
+}
+
+/* Toggle */
+
+.switch input{
+width:20px;
+height:20px;
+}
+
+.recommend{
+color:#00ff88;
+font-size:14px;
+margin-left:10px;
 }
 
 /* Form */
@@ -165,7 +121,7 @@ gap:15px;
 
 input,textarea{
 padding:14px;
-border-radius:12px;
+border-radius:10px;
 border:none;
 background:#1a1a1a;
 color:white;
@@ -187,8 +143,6 @@ button:hover{
 background:#5200cc;
 }
 
-/* Footer */
-
 footer{
 text-align:center;
 padding:40px;
@@ -199,74 +153,54 @@ opacity:0.4;
 </head>
 <body>
 
-<!-- HERO -->
-
 <section class="hero">
-<h1>Build Your Digital Project</h1>
-<p>Choose features & calculate your price instantly.</p>
-
-<a class="btn" href="#calculator">Start</a>
+<h1>Smart Project Builder</h1>
+<p>Choose features & see price update instantly.</p>
+<a class="btn" href="#builder">Start Building</a>
 </section>
 
-<!-- CALCULATOR -->
-
-<section class="section" id="calculator">
+<section class="section" id="builder">
 
 <div class="box">
 
-<h2>Project Configuration</h2>
-
-<!-- OPTIONS -->
+<h2>Project Options</h2>
 
 <div class="option">
 <span>Corporate Website (+1000)</span>
-<label class="switch">
 <input type="checkbox" value="1000" onchange="calculatePrice()">
-<span class="slider"></span>
-</label>
 </div>
 
 <div class="option">
 <span>E-Commerce (+1500)</span>
-<label class="switch">
 <input type="checkbox" value="1500" onchange="calculatePrice()">
-<span class="slider"></span>
-</label>
 </div>
 
 <div class="option">
 <span>Domain Included (+500)</span>
-<label class="switch">
+<div>
 <input type="checkbox" value="500" onchange="calculatePrice()">
-<span class="slider"></span>
-</label>
+<span id="domainTag" class="recommend"></span>
+</div>
 </div>
 
 <div class="option">
 <span>Custom Features (+800)</span>
-<label class="switch">
 <input type="checkbox" value="800" onchange="calculatePrice()">
-<span class="slider"></span>
-</label>
 </div>
-
-<!-- TOTAL -->
 
 <div class="total">
 Total: $<span id="totalPrice">0</span>
 </div>
 
-<!-- FORM -->
-
 <form action="https://formspree.io/f/mqedongz" method="POST">
 
-<input type="hidden" name="totalPrice" id="hiddenPrice">
+<input type="hidden" name="finalPrice" id="hiddenPrice">
 
 <input type="text" name="name" placeholder="Full Name" required>
 <input type="email" name="email" placeholder="Email" required>
 <textarea name="details" rows="4" placeholder="Project Details"></textarea>
 
-<button type="submit">Send Project Request</button>
+<button type="submit">Submit Project</button>
 
 </form>
 
@@ -280,20 +214,44 @@ Total: $<span id="totalPrice">0</span>
 
 <script>
 
-/* PRICE CALCULATOR */
-
 function calculatePrice(){
 
 let total = 0;
+let domainSelected = false;
 
 document.querySelectorAll("input[type='checkbox']").forEach(box=>{
 if(box.checked){
 total += parseInt(box.value);
+if(box.value == "500"){
+domainSelected = true;
+}
 }
 });
 
-document.getElementById("totalPrice").innerText = total;
+/* Fiyat animasyonlu artış */
+let priceElement = document.getElementById("totalPrice");
+let current = parseInt(priceElement.innerText);
+
+let interval = setInterval(()=>{
+if(current < total){
+current++;
+priceElement.innerText = current;
+}else{
+clearInterval(interval);
+}
+},5);
+
 document.getElementById("hiddenPrice").value = total;
+
+/* Domain seçilince mesaj */
+
+let domainTag = document.getElementById("domainTag");
+
+if(domainSelected){
+domainTag.innerText = "✔ Recommended";
+}else{
+domainTag.innerText = "";
+}
 
 }
 
