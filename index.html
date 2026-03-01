@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NovaWebStudio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
+
+/* ===== GLOBAL ===== */
 
 *{
 margin:0;
@@ -16,13 +18,14 @@ box-sizing:border-box;
 }
 
 body{
-font-family:'Poppins',sans-serif;
-background:#0d0d0d;
+font-family:'Inter',sans-serif;
+background:#0a0a0a;
 color:white;
 overflow-x:hidden;
 }
 
-/* HERO */
+/* ===== HERO ===== */
+
 .hero{
 min-height:100vh;
 display:flex;
@@ -30,108 +33,147 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:linear-gradient(-45deg,#6a00ff,#00c3ff,#111);
-background-size:400% 400%;
-animation:gradientMove 10s ease infinite;
+background:radial-gradient(circle at center,#141414,#0a0a0a);
 padding:20px;
 }
 
-@keyframes gradientMove{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
-
 .hero h1{
-font-size:50px;
-font-weight:800;
-animation:fadeIn 1.5s ease;
+font-size:60px;
+background:linear-gradient(90deg,#6a00ff,#00c3ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 .hero p{
-margin-top:15px;
+margin-top:20px;
 opacity:0.8;
-font-size:18px;
-animation:fadeIn 2s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1; transform:translateY(0);}
+font-size:20px;
 }
 
 .btn{
-margin-top:25px;
-padding:15px 35px;
+margin-top:30px;
+padding:15px 40px;
 border-radius:50px;
-background:white;
-color:black;
-font-weight:600;
+background:#6a00ff;
+color:white;
 text-decoration:none;
+font-weight:600;
 transition:0.3s;
+cursor:pointer;
 }
 
 .btn:hover{
-transform:scale(1.15);
-background:#ddd;
+transform:scale(1.1);
+background:#5200cc;
 }
 
-/* SECTIONS */
-section{
-padding:100px 20px;
+/* ===== CALCULATOR ===== */
+
+.section{
+padding:120px 10%;
 text-align:center;
 }
 
-.cards{
+.box{
+background:#111;
+padding:50px;
+border-radius:25px;
+max-width:750px;
+margin:auto;
+border:1px solid #1f1f1f;
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+}
+
+.option{
 display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:25px;
-margin-top:50px;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+margin:15px 0;
+background:#1a1a1a;
+border-radius:12px;
+transition:0.3s;
 }
 
-.card{
-background:#151515;
-padding:30px;
-width:280px;
-border-radius:20px;
-transition:0.4s;
+.option:hover{
+background:#222;
+}
+
+/* Toggle */
+
+.switch{
+position:relative;
+display:inline-block;
+width:50px;
+height:24px;
+}
+
+.switch input{
 opacity:0;
-transform:translateY(40px);
+width:0;
+height:0;
 }
 
-.card.show{
-opacity:1;
-transform:translateY(0);
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:#555;
+transition:.4s;
+border-radius:24px;
 }
 
-.card:hover{
-transform:translateY(-10px) scale(1.05);
-background:#1d1d1d;
+.slider:before{
+position:absolute;
+content:"";
+height:18px;
+width:18px;
+left:4px;
+bottom:3px;
+background:white;
+transition:.4s;
+border-radius:50%;
 }
 
-/* FORM */
+input:checked + .slider{
+background:#6a00ff;
+}
+
+input:checked + .slider:before{
+transform:translateX(24px);
+}
+
+/* Total */
+
+.total{
+margin-top:30px;
+font-size:30px;
+font-weight:800;
+}
+
+/* Form */
 
 form{
-max-width:450px;
-margin:auto;
+margin-top:40px;
 display:flex;
 flex-direction:column;
 gap:15px;
-margin-top:40px;
 }
 
 input,textarea{
-padding:12px;
-border-radius:10px;
+padding:14px;
+border-radius:12px;
 border:none;
-outline:none;
 background:#1a1a1a;
 color:white;
+outline:none;
 }
 
 button{
-padding:14px;
+padding:15px;
 border:none;
 border-radius:30px;
 background:#6a00ff;
@@ -145,82 +187,115 @@ button:hover{
 background:#5200cc;
 }
 
-/* FOOTER */
+/* Footer */
 
 footer{
+text-align:center;
 padding:40px;
-background:#111;
-margin-top:40px;
-opacity:0.7;
+opacity:0.4;
 }
 
 </style>
 </head>
 <body>
 
-<div class="hero">
-<h1>NovaWebStudio</h1>
-<p>Modern | Hızlı | Profesyonel Web Çözümleri</p>
+<!-- HERO -->
 
-<a class="btn" href="#proje">Proje Başlat</a>
-</div>
+<section class="hero">
+<h1>Build Your Digital Project</h1>
+<p>Choose features & calculate your price instantly.</p>
 
-<section>
-<h2>Hizmetlerimiz</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Kurumsal Site</h3>
-<p>İşletmeniz için premium tasarım.</p>
-</div>
-
-<div class="card">
-<h3>E-Ticaret</h3>
-<p>Online satış için güçlü sistem.</p>
-</div>
-
-<div class="card">
-<h3>Özel Yazılım</h3>
-<p>Size özel projeler geliştiriyoruz.</p>
-</div>
-
-</div>
+<a class="btn" href="#calculator">Start</a>
 </section>
 
-<section id="proje">
-<h2>Proje Başlat</h2>
+<!-- CALCULATOR -->
+
+<section class="section" id="calculator">
+
+<div class="box">
+
+<h2>Project Configuration</h2>
+
+<!-- OPTIONS -->
+
+<div class="option">
+<span>Corporate Website (+1000)</span>
+<label class="switch">
+<input type="checkbox" value="1000" onchange="calculatePrice()">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="option">
+<span>E-Commerce (+1500)</span>
+<label class="switch">
+<input type="checkbox" value="1500" onchange="calculatePrice()">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="option">
+<span>Domain Included (+500)</span>
+<label class="switch">
+<input type="checkbox" value="500" onchange="calculatePrice()">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="option">
+<span>Custom Features (+800)</span>
+<label class="switch">
+<input type="checkbox" value="800" onchange="calculatePrice()">
+<span class="slider"></span>
+</label>
+</div>
+
+<!-- TOTAL -->
+
+<div class="total">
+Total: $<span id="totalPrice">0</span>
+</div>
+
+<!-- FORM -->
 
 <form action="https://formspree.io/f/mqedongz" method="POST">
 
-<input type="text" name="isim" placeholder="Ad Soyad" required>
-<input type="email" name="email" placeholder="Email" required>
-<input type="text" name="butce" placeholder="Tahmini Bütçe" required>
-<textarea name="proje" rows="4" placeholder="Projenizi anlatın" required></textarea>
+<input type="hidden" name="totalPrice" id="hiddenPrice">
 
-<button type="submit">Gönder</button>
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="email" name="email" placeholder="Email" required>
+<textarea name="details" rows="4" placeholder="Project Details"></textarea>
+
+<button type="submit">Send Project Request</button>
 
 </form>
+
+</div>
 
 </section>
 
 <footer>
-© 2026 NovaWebStudio - Tüm Hakları Saklıdır
+© 2026 NovaWebStudio
 </footer>
 
 <script>
 
-/* Scroll Animation */
-const cards = document.querySelectorAll(".card");
+/* PRICE CALCULATOR */
 
-window.addEventListener("scroll",()=>{
-cards.forEach(card=>{
-const pos = card.getBoundingClientRect().top;
-if(pos < window.innerHeight - 50){
-card.classList.add("show");
+function calculatePrice(){
+
+let total = 0;
+
+document.querySelectorAll("input[type='checkbox']").forEach(box=>{
+if(box.checked){
+total += parseInt(box.value);
 }
 });
-});
+
+document.getElementById("totalPrice").innerText = total;
+document.getElementById("hiddenPrice").value = total;
+
+}
 
 </script>
 
