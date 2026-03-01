@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NovaWebStudio | Smart Builder</title>
+<title>NovaWebStudio | Builder</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -21,6 +21,26 @@ background:#0a0a0a;
 color:white;
 }
 
+/* LANGUAGE */
+
+.lang{
+position:fixed;
+top:20px;
+right:20px;
+background:#111;
+padding:10px;
+border-radius:10px;
+}
+
+.lang button{
+background:#6a00ff;
+border:none;
+color:white;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
 /* HERO */
 
 .hero{
@@ -34,22 +54,16 @@ background:radial-gradient(circle at center,#1a1a1a,#0a0a0a);
 }
 
 .hero h1{
-font-size:60px;
+font-size:55px;
 background:linear-gradient(90deg,#6a00ff,#00c3ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-.hero p{
-opacity:0.7;
-margin-top:20px;
-font-size:20px;
-}
-
 .btn{
-margin-top:30px;
-padding:15px 40px;
-border-radius:50px;
+margin-top:25px;
+padding:15px 35px;
+border-radius:40px;
 background:#6a00ff;
 color:white;
 text-decoration:none;
@@ -60,198 +74,210 @@ transition:0.3s;
 
 .btn:hover{
 transform:scale(1.1);
-background:#5200cc;
 }
 
-/* CALCULATOR */
+/* SHOP */
 
 .section{
 padding:100px 10%;
 text-align:center;
 }
 
-.box{
+.products{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+}
+
+.product{
 background:#111;
-padding:50px;
-border-radius:25px;
-max-width:750px;
-margin:auto;
+padding:25px;
+border-radius:15px;
+width:250px;
 border:1px solid #1f1f1f;
 }
 
-.option{
+.product button{
+margin-top:15px;
+padding:8px 15px;
+background:#00c3ff;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.cart{
+margin-top:60px;
+background:#111;
+padding:40px;
+border-radius:20px;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.cart-item{
 display:flex;
 justify-content:space-between;
-align-items:center;
-padding:15px;
-margin:15px 0;
-background:#1a1a1a;
-border-radius:12px;
+margin-bottom:10px;
 }
 
 .total{
-margin-top:30px;
-font-size:30px;
-font-weight:800;
-color:#00c3ff;
-transition:0.3s;
-}
-
-/* Toggle */
-
-.switch input{
-width:20px;
-height:20px;
-}
-
-.recommend{
+margin-top:20px;
+font-size:22px;
 color:#00ff88;
-font-size:14px;
-margin-left:10px;
 }
 
-/* Form */
-
-form{
-margin-top:40px;
-display:flex;
-flex-direction:column;
-gap:15px;
-}
-
-input,textarea{
-padding:14px;
-border-radius:10px;
-border:none;
-background:#1a1a1a;
-color:white;
-outline:none;
-}
-
-button{
-padding:15px;
-border:none;
-border-radius:30px;
+.checkout{
+margin-top:20px;
+padding:12px;
 background:#6a00ff;
+border:none;
+border-radius:20px;
 color:white;
-font-weight:600;
 cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-background:#5200cc;
-}
-
-footer{
-text-align:center;
-padding:40px;
-opacity:0.4;
 }
 
 </style>
 </head>
 <body>
 
+<!-- LANGUAGE -->
+
+<div class="lang">
+<button onclick="setLang('tr')">TR</button>
+<button onclick="setLang('en')">EN</button>
+</div>
+
+<!-- HERO -->
+
 <section class="hero">
-<h1>Smart Project Builder</h1>
-<p>Choose features & see price update instantly.</p>
-<a class="btn" href="#builder">Start Building</a>
+<h1 id="title">Project Builder</h1>
+<p id="subtitle">Choose services and build your project</p>
+<a class="btn" href="#shop" id="startBtn">Start</a>
 </section>
 
-<section class="section" id="builder">
+<!-- SHOP -->
 
-<div class="box">
+<section class="section" id="shop">
 
-<h2>Project Options</h2>
+<h2 id="serviceText">Services</h2>
 
-<div class="option">
-<span>Corporate Website (+1000)</span>
-<input type="checkbox" value="1000" onchange="calculatePrice()">
+<div class="products">
+
+<div class="product">
+<h3>Corporate Website</h3>
+<p>$1000</p>
+<button onclick="addToCart('Corporate Website',1000)">Add</button>
 </div>
 
-<div class="option">
-<span>E-Commerce (+1500)</span>
-<input type="checkbox" value="1500" onchange="calculatePrice()">
+<div class="product">
+<h3>E-Commerce</h3>
+<p>$1500</p>
+<button onclick="addToCart('E-Commerce',1500)">Add</button>
 </div>
 
-<div class="option">
-<span>Domain Included (+500)</span>
-<div>
-<input type="checkbox" value="500" onchange="calculatePrice()">
-<span id="domainTag" class="recommend"></span>
-</div>
+<div class="product">
+<h3>Domain Included</h3>
+<p>$500</p>
+<button onclick="addToCart('Domain',500)">Add</button>
 </div>
 
-<div class="option">
-<span>Custom Features (+800)</span>
-<input type="checkbox" value="800" onchange="calculatePrice()">
 </div>
+
+<!-- CART -->
+
+<div class="cart">
+
+<h3 id="cartTitle">Your Cart</h3>
+
+<div id="cartItems"></div>
 
 <div class="total">
 Total: $<span id="totalPrice">0</span>
 </div>
 
-<form action="https://formspree.io/f/mqedongz" method="POST">
-
-<input type="hidden" name="finalPrice" id="hiddenPrice">
-
-<input type="text" name="name" placeholder="Full Name" required>
-<input type="email" name="email" placeholder="Email" required>
-<textarea name="details" rows="4" placeholder="Project Details"></textarea>
-
-<button type="submit">Submit Project</button>
-
-</form>
+<button class="checkout" onclick="checkout()">Send Request</button>
 
 </div>
 
 </section>
 
-<footer>
-© 2026 NovaWebStudio
-</footer>
-
 <script>
 
-function calculatePrice(){
+/* ===== LANGUAGE ===== */
+
+const translations = {
+tr:{
+title:"Proje Oluşturucu",
+subtitle:"Hizmetleri seç ve projenizi oluştur",
+start:"Başla",
+services:"Hizmetler",
+cart:"Sepetin",
+checkout:"Talep Gönder"
+},
+en:{
+title:"Project Builder",
+subtitle:"Choose services and build your project",
+start:"Start",
+services:"Services",
+cart:"Your Cart",
+checkout:"Send Request"
+}
+};
+
+function setLang(lang){
+
+document.getElementById("title").innerText = translations[lang].title;
+document.getElementById("subtitle").innerText = translations[lang].subtitle;
+document.getElementById("startBtn").innerText = translations[lang].start;
+document.getElementById("serviceText").innerText = translations[lang].services;
+document.getElementById("cartTitle").innerText = translations[lang].cart;
+
+}
+
+/* ===== CART SYSTEM ===== */
+
+let cart = [];
+
+function addToCart(name,price){
+
+cart.push({name,price});
+renderCart();
+
+}
+
+function renderCart(){
+
+let cartContainer = document.getElementById("cartItems");
+cartContainer.innerHTML = "";
 
 let total = 0;
-let domainSelected = false;
 
-document.querySelectorAll("input[type='checkbox']").forEach(box=>{
-if(box.checked){
-total += parseInt(box.value);
-if(box.value == "500"){
-domainSelected = true;
-}
-}
+cart.forEach((item,index)=>{
+total += item.price;
+
+cartContainer.innerHTML += `
+<div class="cart-item">
+<span>${item.name}</span>
+<span>$${item.price}</span>
+</div>
+`;
 });
 
-/* Fiyat animasyonlu artış */
-let priceElement = document.getElementById("totalPrice");
-let current = parseInt(priceElement.innerText);
+document.getElementById("totalPrice").innerText = total;
 
-let interval = setInterval(()=>{
-if(current < total){
-current++;
-priceElement.innerText = current;
-}else{
-clearInterval(interval);
 }
-},5);
 
-document.getElementById("hiddenPrice").value = total;
+function checkout(){
 
-/* Domain seçilince mesaj */
-
-let domainTag = document.getElementById("domainTag");
-
-if(domainSelected){
-domainTag.innerText = "✔ Recommended";
-}else{
-domainTag.innerText = "";
+if(cart.length === 0){
+alert("Cart is empty!");
+return;
 }
+
+alert("Project request sent 🚀");
 
 }
 
