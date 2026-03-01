@@ -17,11 +17,12 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-background:#0f0f0f;
+background:#0d0d0d;
 color:white;
-scroll-behavior:smooth;
+overflow-x:hidden;
 }
 
+/* HERO */
 .hero{
 min-height:100vh;
 display:flex;
@@ -29,19 +30,34 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:linear-gradient(135deg,#6a00ff,#00c3ff);
+background:linear-gradient(-45deg,#6a00ff,#00c3ff,#111);
+background-size:400% 400%;
+animation:gradientMove 10s ease infinite;
 padding:20px;
 }
 
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
 .hero h1{
-font-size:45px;
+font-size:50px;
 font-weight:800;
+animation:fadeIn 1.5s ease;
 }
 
 .hero p{
 margin-top:15px;
-opacity:0.9;
+opacity:0.8;
 font-size:18px;
+animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 .btn{
@@ -50,18 +66,19 @@ padding:15px 35px;
 border-radius:50px;
 background:white;
 color:black;
-text-decoration:none;
 font-weight:600;
+text-decoration:none;
 transition:0.3s;
 }
 
 .btn:hover{
-transform:scale(1.1);
-background:#e6e6e6;
+transform:scale(1.15);
+background:#ddd;
 }
 
+/* SECTIONS */
 section{
-padding:90px 20px;
+padding:100px 20px;
 text-align:center;
 }
 
@@ -70,30 +87,38 @@ display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:25px;
-margin-top:40px;
+margin-top:50px;
 }
 
 .card{
-background:#1a1a1a;
+background:#151515;
 padding:30px;
 width:280px;
 border-radius:20px;
-transition:0.3s;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+transition:0.4s;
+opacity:0;
+transform:translateY(40px);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
 }
 
 .card:hover{
-transform:translateY(-10px);
-background:#202020;
+transform:translateY(-10px) scale(1.05);
+background:#1d1d1d;
 }
 
+/* FORM */
+
 form{
+max-width:450px;
+margin:auto;
 display:flex;
 flex-direction:column;
 gap:15px;
-max-width:400px;
-margin:auto;
-margin-top:30px;
+margin-top:40px;
 }
 
 input,textarea{
@@ -120,18 +145,19 @@ button:hover{
 background:#5200cc;
 }
 
+/* FOOTER */
+
 footer{
 padding:40px;
 background:#111;
 margin-top:40px;
-opacity:0.8;
+opacity:0.7;
 }
 
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
 <h1>NovaWebStudio</h1>
 <p>Modern | Hızlı | Profesyonel Web Çözümleri</p>
@@ -139,16 +165,6 @@ opacity:0.8;
 <a class="btn" href="#proje">Proje Başlat</a>
 </div>
 
-<!-- HAKKIMIZDA -->
-<section>
-<h2>Hakkımızda</h2>
-<p style="margin-top:20px;opacity:0.8;">
-Markanızı dijital dünyada güçlü ve modern şekilde temsil ediyoruz. 
-Özel tasarım web siteleri ve yüksek dönüşüm odaklı projeler üretiyoruz.
-</p>
-</section>
-
-<!-- HİZMETLER -->
 <section>
 <h2>Hizmetlerimiz</h2>
 
@@ -156,35 +172,31 @@ Markanızı dijital dünyada güçlü ve modern şekilde temsil ediyoruz.
 
 <div class="card">
 <h3>Kurumsal Site</h3>
-<p>Şirketiniz için premium tanıtım sitesi.</p>
+<p>İşletmeniz için premium tasarım.</p>
 </div>
 
 <div class="card">
 <h3>E-Ticaret</h3>
-<p>Online satış için güçlü altyapı.</p>
+<p>Online satış için güçlü sistem.</p>
 </div>
 
 <div class="card">
 <h3>Özel Yazılım</h3>
-<p>Size özel sistem ve otomasyon çözümleri.</p>
+<p>Size özel projeler geliştiriyoruz.</p>
 </div>
 
 </div>
 </section>
 
-<!-- PROJE FORMU -->
 <section id="proje">
 <h2>Proje Başlat</h2>
 
 <form action="https://formspree.io/f/mqedongz" method="POST">
 
 <input type="text" name="isim" placeholder="Ad Soyad" required>
-
 <input type="email" name="email" placeholder="Email" required>
-
 <input type="text" name="butce" placeholder="Tahmini Bütçe" required>
-
-<textarea name="proje" rows="4" placeholder="Ne tarz site istiyorsunuz?" required></textarea>
+<textarea name="proje" rows="4" placeholder="Projenizi anlatın" required></textarea>
 
 <button type="submit">Gönder</button>
 
@@ -195,6 +207,22 @@ Markanızı dijital dünyada güçlü ve modern şekilde temsil ediyoruz.
 <footer>
 © 2026 NovaWebStudio - Tüm Hakları Saklıdır
 </footer>
+
+<script>
+
+/* Scroll Animation */
+const cards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll",()=>{
+cards.forEach(card=>{
+const pos = card.getBoundingClientRect().top;
+if(pos < window.innerHeight - 50){
+card.classList.add("show");
+}
+});
+});
+
+</script>
 
 </body>
 </html>
