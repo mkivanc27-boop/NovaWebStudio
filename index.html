@@ -7,244 +7,98 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-font-family:'Inter',sans-serif;
-background:#0f0f14;
-color:white;
-overflow-x:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0f0f14;color:#fff;overflow-x:hidden}
 
 /* HERO */
-
 .hero{
 background:linear-gradient(135deg,#6a00ff,#00c3ff);
-padding:120px 20px;
-text-align:center;
+padding:120px 20px;text-align:center
 }
+.hero h1{font-size:44px;margin-bottom:15px}
+.hero p{max-width:650px;margin:auto;opacity:.9}
 
-.hero h1{
-font-size:42px;
-margin-bottom:20px;
-}
+/* SECTION */
+.section{padding:80px 8%}
+.center{text-align:center}
 
-.hero p{
-max-width:600px;
-margin:auto;
-opacity:0.9;
-}
-
-/* ABOUT */
-
-.section{
-padding:80px 8%;
-}
-
-.about{
-text-align:center;
-}
-
-.about p{
-max-width:700px;
-margin:20px auto;
-opacity:0.8;
-}
-
-/* WHY */
-
-.why{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-justify-content:center;
-margin-top:40px;
-}
-
+/* CARDS */
+.grid{display:grid;gap:25px}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .card{
-background:#1a1a25;
-padding:25px;
-border-radius:20px;
-width:260px;
-text-align:center;
-transition:0.3s;
+background:#1a1a25;padding:25px;border-radius:18px;
+transition:.3s;box-shadow:0 10px 30px rgba(0,0,0,.2)
 }
-
-.card:hover{
-transform:translateY(-8px);
-}
+.card:hover{transform:translateY(-8px)}
 
 /* SHOP */
-
-.container{
-display:flex;
-gap:40px;
-padding:60px 8%;
-flex-wrap:wrap;
-}
-
-.products{
-flex:2;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
-}
-
-.product{
-background:#1a1a25;
-padding:20px;
-border-radius:20px;
-transition:0.3s;
-}
-
-.product:hover{
-transform:scale(1.02);
-}
-
-.old{
-text-decoration:line-through;
-opacity:0.6;
-font-size:14px;
-}
-
-.new{
-color:#00ffae;
-font-weight:700;
-font-size:20px;
-}
-
-.discount{
-background:#ff0066;
-padding:4px 8px;
-border-radius:8px;
-font-size:12px;
-margin-left:6px;
-}
-
+.shop{display:flex;gap:40px;flex-wrap:wrap}
+.products{flex:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.product{background:#1a1a25;padding:20px;border-radius:20px;transition:.3s}
+.product:hover{transform:scale(1.03)}
+.old{text-decoration:line-through;opacity:.6;font-size:14px}
+.new{color:#00ffae;font-weight:700;font-size:20px}
+.discount{background:#ff0066;padding:4px 8px;border-radius:8px;font-size:12px;margin-left:6px}
+.tag{font-size:12px;color:#ffcc00;margin-top:5px}
 .product button{
-margin-top:10px;
-width:100%;
-padding:10px;
-border:none;
-border-radius:10px;
-background:#6a00ff;
-color:white;
-cursor:pointer;
+margin-top:10px;width:100%;padding:10px;border:none;
+border-radius:10px;background:#6a00ff;color:white;cursor:pointer
 }
 
 /* CART */
-
 .cart{
-flex:1;
-background:#1a1a25;
-padding:20px;
-border-radius:20px;
-position:sticky;
-top:20px;
-height:fit-content;
+flex:1;background:#1a1a25;padding:20px;border-radius:20px;
+position:sticky;top:20px;height:fit-content
+}
+.cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px}
+.qty{display:flex;gap:5px}
+.qty button{padding:2px 6px;border:none;background:#333;color:#fff;cursor:pointer}
+.remove{color:#ff4d4d;font-size:12px;cursor:pointer}
+.summary{margin-top:15px;font-size:14px}
+.total{margin-top:10px;font-size:18px;font-weight:700;color:#00ffae}
+.coupon{margin-top:10px;display:flex;gap:5px}
+.coupon input{flex:1;padding:6px;border-radius:6px;border:none}
+.coupon button{padding:6px;border:none;border-radius:6px;background:#00c853;color:white;cursor:pointer}
+
+/* MOBILE BAR */
+.mobile-cart-bar{
+display:none;position:fixed;bottom:0;left:0;width:100%;
+background:#6a00ff;padding:12px;text-align:center;font-weight:600
 }
 
-.cart-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:10px;
-font-size:13px;
-}
+/* FAQ */
+.faq-item{margin-bottom:15px}
+.faq-item h4{cursor:pointer}
+.faq-item p{opacity:.7;margin-top:5px;display:none}
 
-.qty{
-display:flex;
-gap:5px;
-}
-
-.qty button{
-padding:2px 6px;
-border:none;
-cursor:pointer;
-background:#333;
-color:white;
-}
-
-.remove{
-color:#ff4d4d;
-font-size:12px;
-cursor:pointer;
-}
-
-.summary{
-margin-top:15px;
-font-size:14px;
-}
-
-.total{
-margin-top:10px;
-font-size:18px;
-font-weight:700;
-color:#00ffae;
-}
-
-.coupon{
-margin-top:10px;
-display:flex;
-gap:5px;
-}
-
-.coupon input{
-flex:1;
-padding:6px;
-border-radius:6px;
-border:none;
-}
-
-.coupon button{
-padding:6px;
-border:none;
-border-radius:6px;
-background:#00c853;
-color:white;
-cursor:pointer;
-}
-
-/* MOBILE */
-
+/* RESPONSIVE */
 @media(max-width:768px){
-
-.container{
-flex-direction:column;
+.shop{flex-direction:column}
+.cart{position:relative}
+.mobile-cart-bar{display:block}
+.hero h1{font-size:32px}
 }
-
-.cart{
-position:relative;
-top:0;
-margin-top:30px;
-}
-
-.hero h1{
-font-size:32px;
-}
-
-}
-
 </style>
 </head>
 <body>
 
 <section class="hero">
 <h1>NovaWebStudio</h1>
-<p>Satış odaklı, modern ve hızlı web projeleri geliştiriyoruz.</p>
+<p>Satış odaklı, premium ve performanslı web projeleri geliştiriyoruz.</p>
 </section>
 
-<section class="section about">
-<h2>Biz Kimiz?</h2>
-<p>Dijital dünyada markaların büyümesini sağlayan profesyonel web çözümleri üretiyoruz.</p>
-
-<div class="why">
-<div class="card">⚡ Hızlı Teslim</div>
-<div class="card">🎯 Satış Odaklı Tasarım</div>
-<div class="card">🔒 Güvenli Altyapı</div>
+<section class="section center">
+<h2>Neden Biz?</h2>
+<div class="grid grid-3">
+<div class="card">⚡ 7 Gün İçinde Teslim</div>
+<div class="card">🎯 Dönüşüm Odaklı Tasarım</div>
+<div class="card">🔒 Güvenli & Ölçeklenebilir Altyapı</div>
 </div>
 </section>
 
-<div class="container">
+<section class="section">
+<h2 class="center">Projeler</h2>
+<div class="shop">
 
 <div class="products">
 
@@ -253,6 +107,7 @@ font-size:32px;
 <div class="old">₺16000</div>
 <span class="discount">%20</span>
 <div class="new">₺12800</div>
+<div class="tag">🔥 Son 3 gün indirim</div>
 <button onclick="addToCart('E-Ticaret',12800)">Sepete Ekle</button>
 </div>
 
@@ -261,6 +116,7 @@ font-size:32px;
 <div class="old">₺10000</div>
 <span class="discount">%10</span>
 <div class="new">₺9000</div>
+<div class="tag">👀 Şu an 5 kişi inceliyor</div>
 <button onclick="addToCart('Kurumsal',9000)">Sepete Ekle</button>
 </div>
 
@@ -285,13 +141,27 @@ Genel Toplam: ₺<span id="total">0</span>
 </div>
 
 </div>
+</div>
+</section>
 
+<section class="section center">
+<h2>Sık Sorulan Sorular</h2>
+<div class="faq-item">
+<h4 onclick="toggleFaq(this)">Teslim süresi nedir?</h4>
+<p>Projeye göre 5-10 gün arası değişir.</p>
+</div>
+<div class="faq-item">
+<h4 onclick="toggleFaq(this)">Hosting dahil mi?</h4>
+<p>İsteğe bağlı olarak eklenebilir.</p>
+</div>
+</section>
+
+<div class="mobile-cart-bar">
+Toplam: ₺<span id="mobileTotal">0</span>
 </div>
 
 <script>
-
-let cart=[];
-let discountRate=0;
+let cart=[];let discountRate=0;
 
 function addToCart(name,price){
 let item=cart.find(x=>x.name===name);
@@ -305,22 +175,20 @@ let container=document.getElementById("cartItems");
 container.innerHTML="";
 let subtotal=0;
 
-cart.forEach((item,index)=>{
+cart.forEach((item,i)=>{
 subtotal+=item.price*item.qty;
-
 container.innerHTML+=`
 <div class="cart-item">
 <div>
 ${item.name}
-<div class="remove" onclick="removeItem(${index})">Sil</div>
+<div class="remove" onclick="removeItem(${i})">Sil</div>
 </div>
 <div class="qty">
-<button onclick="changeQty(${index},-1)">-</button>
+<button onclick="changeQty(${i},-1)">-</button>
 ${item.qty}
-<button onclick="changeQty(${index},1)">+</button>
+<button onclick="changeQty(${i},1)">+</button>
 </div>
-</div>
-`;
+</div>`;
 });
 
 let discount=subtotal*discountRate;
@@ -329,6 +197,7 @@ let total=subtotal-discount;
 document.getElementById("subtotal").innerText=subtotal;
 document.getElementById("discountAmount").innerText=discount;
 document.getElementById("total").innerText=total;
+document.getElementById("mobileTotal").innerText=total;
 }
 
 function changeQty(i,val){
@@ -337,21 +206,20 @@ if(cart[i].qty<=0){cart.splice(i,1);}
 renderCart();
 }
 
-function removeItem(i){
-cart.splice(i,1);
-renderCart();
-}
+function removeItem(i){cart.splice(i,1);renderCart();}
 
 function applyCoupon(){
 let code=document.getElementById("coupon").value;
-
-if(code==="INDIRIM10"){discountRate=0.10;}
-else if(code==="PRO20"){discountRate=0.20;}
-else{discountRate=0;}
-
+if(code==="INDIRIM10"){discountRate=.10}
+else if(code==="PRO20"){discountRate=.20}
+else{discountRate=0}
 renderCart();
 }
 
+function toggleFaq(el){
+let p=el.nextElementSibling;
+p.style.display=p.style.display==="block"?"none":"block";
+}
 </script>
 
 </body>
