@@ -4,222 +4,286 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NovaWebStudio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0f0f14;color:#fff;overflow-x:hidden}
+body{
+font-family:'Inter',sans-serif;
+background:#0f0f17;
+color:white;
+}
 
-/* HERO */
+.section{padding:70px 8%}
+
+h1{
+font-size:42px;
+background:linear-gradient(90deg,#6a00ff,#00ffae);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
 .hero{
-background:linear-gradient(135deg,#6a00ff,#00c3ff);
-padding:120px 20px;text-align:center
+text-align:center;
+padding:110px 20px;
+background:radial-gradient(circle at top,#6a00ff,#0f0f17);
 }
-.hero h1{font-size:44px;margin-bottom:15px}
-.hero p{max-width:650px;margin:auto;opacity:.9}
 
-/* SECTION */
-.section{padding:80px 8%}
-.center{text-align:center}
+.hero p{
+max-width:600px;
+margin:20px auto;
+opacity:.8;
+}
 
-/* CARDS */
-.grid{display:grid;gap:25px}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .card{
-background:#1a1a25;padding:25px;border-radius:18px;
-transition:.3s;box-shadow:0 10px 30px rgba(0,0,0,.2)
-}
-.card:hover{transform:translateY(-8px)}
-
-/* SHOP */
-.shop{display:flex;gap:40px;flex-wrap:wrap}
-.products{flex:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
-.product{background:#1a1a25;padding:20px;border-radius:20px;transition:.3s}
-.product:hover{transform:scale(1.03)}
-.old{text-decoration:line-through;opacity:.6;font-size:14px}
-.new{color:#00ffae;font-weight:700;font-size:20px}
-.discount{background:#ff0066;padding:4px 8px;border-radius:8px;font-size:12px;margin-left:6px}
-.tag{font-size:12px;color:#ffcc00;margin-top:5px}
-.product button{
-margin-top:10px;width:100%;padding:10px;border:none;
-border-radius:10px;background:#6a00ff;color:white;cursor:pointer
+background:rgba(255,255,255,.05);
+padding:30px;
+border-radius:22px;
+border:1px solid rgba(255,255,255,.1);
+margin-bottom:30px;
+backdrop-filter:blur(10px);
 }
 
-/* CART */
+.about{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:30px;
+}
+
+.about-box{
+background:rgba(255,255,255,.05);
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.1);
+}
+
+select,input,textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#14141f;
+color:white;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#6a00ff,#00c3ff);
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{opacity:.85}
+
 .cart{
-flex:1;background:#1a1a25;padding:20px;border-radius:20px;
-position:sticky;top:20px;height:fit-content
-}
-.cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px}
-.qty{display:flex;gap:5px}
-.qty button{padding:2px 6px;border:none;background:#333;color:#fff;cursor:pointer}
-.remove{color:#ff4d4d;font-size:12px;cursor:pointer}
-.summary{margin-top:15px;font-size:14px}
-.total{margin-top:10px;font-size:18px;font-weight:700;color:#00ffae}
-.coupon{margin-top:10px;display:flex;gap:5px}
-.coupon input{flex:1;padding:6px;border-radius:6px;border:none}
-.coupon button{padding:6px;border:none;border-radius:6px;background:#00c853;color:white;cursor:pointer}
-
-/* MOBILE BAR */
-.mobile-cart-bar{
-display:none;position:fixed;bottom:0;left:0;width:100%;
-background:#6a00ff;padding:12px;text-align:center;font-weight:600
+margin-top:20px;
+background:#14141f;
+padding:15px;
+border-radius:15px;
 }
 
-/* FAQ */
-.faq-item{margin-bottom:15px}
-.faq-item h4{cursor:pointer}
-.faq-item p{opacity:.7;margin-top:5px;display:none}
+.highlight{
+color:#00ffae;
+font-weight:700;
+}
 
-/* RESPONSIVE */
+.order-card{
+background:rgba(255,255,255,.04);
+padding:20px;
+border-radius:18px;
+margin-bottom:15px;
+border:1px solid rgba(255,255,255,.08);
+animation:fadeIn .4s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
 @media(max-width:768px){
-.shop{flex-direction:column}
-.cart{position:relative}
-.mobile-cart-bar{display:block}
-.hero h1{font-size:32px}
+.hero{padding:80px 20px}
 }
 </style>
 </head>
 <body>
 
-<section class="hero">
+<!-- HERO -->
+<div class="hero">
 <h1>NovaWebStudio</h1>
-<p>Satış odaklı, premium ve performanslı web projeleri geliştiriyoruz.</p>
-</section>
-
-<section class="section center">
-<h2>Neden Biz?</h2>
-<div class="grid grid-3">
-<div class="card">⚡ 7 Gün İçinde Teslim</div>
-<div class="card">🎯 Dönüşüm Odaklı Tasarım</div>
-<div class="card">🔒 Güvenli & Ölçeklenebilir Altyapı</div>
-</div>
-</section>
-
-<section class="section">
-<h2 class="center">Projeler</h2>
-<div class="shop">
-
-<div class="products">
-
-<div class="product">
-<h3>E-Ticaret Sitesi</h3>
-<div class="old">₺16000</div>
-<span class="discount">%20</span>
-<div class="new">₺12800</div>
-<div class="tag">🔥 Son 3 gün indirim</div>
-<button onclick="addToCart('E-Ticaret',12800)">Sepete Ekle</button>
+<p>Modern, performanslı ve premium web projeleri geliştiriyoruz. 
+Kurumsal, e-ticaret ve özel yazılım çözümleri sunuyoruz.</p>
 </div>
 
-<div class="product">
-<h3>Kurumsal Site</h3>
-<div class="old">₺10000</div>
-<span class="discount">%10</span>
-<div class="new">₺9000</div>
-<div class="tag">👀 Şu an 5 kişi inceliyor</div>
-<button onclick="addToCart('Kurumsal',9000)">Sepete Ekle</button>
+<!-- BİZİ TANIYIN -->
+<div class="section">
+<h2>Bizi Tanıyın</h2>
+<div class="about">
+<div class="about-box">
+<h3>Yaratıcı Tasarım</h3>
+<p>Her projede özgün ve modern tasarım yaklaşımı.</p>
+</div>
+<div class="about-box">
+<h3>Performans</h3>
+<p>Hızlı, mobil uyumlu ve SEO dostu altyapı.</p>
+</div>
+<div class="about-box">
+<h3>Özel Yazılım</h3>
+<p>Hazır sistem değil, tamamen ihtiyaca özel çözümler.</p>
+</div>
+</div>
+</div>
+
+<!-- SİPARİŞ -->
+<div class="section">
+
+<div class="card">
+<h2>Hizmet Seç</h2>
+
+<select id="service">
+<option value="">Seçim Yapın</option>
+<option value="Kurumsal Web Site" data-price="10000">Kurumsal Web Site - 10.000 TL</option>
+<option value="E-Ticaret Site" data-price="16000">E-Ticaret Site - 16.000 TL</option>
+<option value="IO Oyunu" data-price="8000">IO Oyunu - 8.000 TL</option>
+<option value="Landing Page" data-price="5000">Landing Page - 5.000 TL</option>
+<option value="Özel Yazılım" data-price="20000">Özel Yazılım - 20.000 TL</option>
+</select>
+
+<div class="cart" id="cartBox" style="display:none"></div>
+</div>
+
+<div class="card">
+<h2>Sipariş Bilgileri</h2>
+<input type="text" id="name" placeholder="Ad Soyad">
+<input type="email" id="email" placeholder="Email">
+<input type="text" id="budget" placeholder="Bütçeniz (isteğe bağlı)">
+<textarea id="note" placeholder="Proje detaylarını yazın"></textarea>
+<button onclick="createOrder()">Siparişi Oluştur</button>
+
+<div id="orderInfo"></div>
+
+<div id="paymentBox" style="display:none;margin-top:15px">
+<p><b>IBAN:</b></p>
+<p><b>TR44 0006 2000 0690 0006 8490 45</b></p>
+<p>Açıklamaya mailinize gelen sipariş kodunu yazın.</p>
 </div>
 
 </div>
 
-<div class="cart">
-<h3>Sepet</h3>
-<div id="cartItems"></div>
-
-<div class="coupon">
-<input type="text" id="coupon" placeholder="Kupon">
-<button onclick="applyCoupon()">Uygula</button>
 </div>
 
-<div class="summary">
-Ara Toplam: ₺<span id="subtotal">0</span><br>
-İndirim: ₺<span id="discountAmount">0</span>
-</div>
-
-<div class="total">
-Genel Toplam: ₺<span id="total">0</span>
-</div>
-
-</div>
-</div>
-</section>
-
-<section class="section center">
-<h2>Sık Sorulan Sorular</h2>
-<div class="faq-item">
-<h4 onclick="toggleFaq(this)">Teslim süresi nedir?</h4>
-<p>Projeye göre 5-10 gün arası değişir.</p>
-</div>
-<div class="faq-item">
-<h4 onclick="toggleFaq(this)">Hosting dahil mi?</h4>
-<p>İsteğe bağlı olarak eklenebilir.</p>
-</div>
-</section>
-
-<div class="mobile-cart-bar">
-Toplam: ₺<span id="mobileTotal">0</span>
+<!-- SİPARİŞ LİSTESİ -->
+<div class="section">
+<h2>Aktif Siparişler</h2>
+<div id="orderList"></div>
 </div>
 
 <script>
-let cart=[];let discountRate=0;
 
-function addToCart(name,price){
-let item=cart.find(x=>x.name===name);
-if(item){item.qty++;}
-else{cart.push({name,price,qty:1});}
-renderCart();
+if(!localStorage.getItem("orders")){
+localStorage.setItem("orders",JSON.stringify([]));
 }
 
-function renderCart(){
-let container=document.getElementById("cartItems");
-container.innerHTML="";
-let subtotal=0;
+let selectedService="";
+let selectedPrice=0;
 
-cart.forEach((item,i)=>{
-subtotal+=item.price*item.qty;
-container.innerHTML+=`
-<div class="cart-item">
-<div>
-${item.name}
-<div class="remove" onclick="removeItem(${i})">Sil</div>
-</div>
-<div class="qty">
-<button onclick="changeQty(${i},-1)">-</button>
-${item.qty}
-<button onclick="changeQty(${i},1)">+</button>
-</div>
-</div>`;
+document.getElementById("service").addEventListener("change",function(){
+let option=this.options[this.selectedIndex];
+if(option.value==""){
+document.getElementById("cartBox").style.display="none";
+return;
+}
+selectedService=option.value;
+selectedPrice=option.dataset.price;
+
+document.getElementById("cartBox").style.display="block";
+document.getElementById("cartBox").innerHTML=
+"<p><b>Seçilen:</b> "+selectedService+"</p>"+
+"<p><b>Başlangıç:</b> <span class='highlight'>"+selectedPrice+" TL</span></p>";
 });
 
-let discount=subtotal*discountRate;
-let total=subtotal-discount;
-
-document.getElementById("subtotal").innerText=subtotal;
-document.getElementById("discountAmount").innerText=discount;
-document.getElementById("total").innerText=total;
-document.getElementById("mobileTotal").innerText=total;
+function maskName(name){
+return name.charAt(0).toUpperCase()+"*****";
 }
 
-function changeQty(i,val){
-cart[i].qty+=val;
-if(cart[i].qty<=0){cart.splice(i,1);}
-renderCart();
+function formatDate(date){
+return new Date(date).toLocaleDateString("tr-TR");
 }
 
-function removeItem(i){cart.splice(i,1);renderCart();}
-
-function applyCoupon(){
-let code=document.getElementById("coupon").value;
-if(code==="INDIRIM10"){discountRate=.10}
-else if(code==="PRO20"){discountRate=.20}
-else{discountRate=0}
-renderCart();
+function generateCode(){
+return "NW-"+Math.random().toString(36).substr(2,6).toUpperCase();
 }
 
-function toggleFaq(el){
-let p=el.nextElementSibling;
-p.style.display=p.style.display==="block"?"none":"block";
+function renderOrders(){
+let orders=JSON.parse(localStorage.getItem("orders"));
+let html="";
+orders.forEach((order,index)=>{
+html+=`
+<div class="order-card">
+<p><b>Sıra:</b> ${index+1}</p>
+<p><b>Müşteri:</b> ${maskName(order.name)}</p>
+<p><b>Hizmet:</b> ${order.service}</p>
+<p><b>Tarih:</b> ${formatDate(order.date)}</p>
+</div>`;
+});
+document.getElementById("orderList").innerHTML=html;
 }
+
+function createOrder(){
+
+if(!selectedService){
+alert("Önce hizmet seçmelisiniz");
+return;
+}
+
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+
+if(name=="" || email==""){
+alert("İsim ve email gerekli");
+return;
+}
+
+let orders=JSON.parse(localStorage.getItem("orders"));
+let code=generateCode();
+
+let newOrder={
+name:name,
+service:selectedService,
+date:new Date().toISOString(),
+code:code
+};
+
+orders.push(newOrder);
+localStorage.setItem("orders",JSON.stringify(orders));
+
+let sıra=orders.length;
+
+document.getElementById("orderInfo").innerHTML=
+"<p class='highlight'>Sipariş alındı ✔</p>"+
+"<p>Sipariş sıranız: <span class='highlight'>"+sıra+"</span></p>";
+
+document.getElementById("paymentBox").style.display="block";
+
+fetch("https://formspree.io/f/mqedongz",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(newOrder)
+});
+
+renderOrders();
+}
+
+renderOrders();
+
 </script>
 
 </body>
