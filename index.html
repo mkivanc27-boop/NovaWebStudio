@@ -4,200 +4,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NovaWeb Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap');
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-body{
-background:#0b0f14;
-color:white;
-line-height:1.6;
-}
-
-header{
-padding:120px 10%;
-text-align:center;
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-}
-
-header h1{
-font-size:65px;
-font-weight:800;
-}
-
-section{
-padding:90px 10%;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
-padding:40px;
-border-radius:30px;
-border:1px solid rgba(255,255,255,0.08);
-}
-
-input,textarea,select{
-width:100%;
-padding:14px;
-margin-top:12px;
-border-radius:12px;
-border:none;
-background:#111820;
-color:white;
-}
-
-button{
-padding:12px 20px;
-border:none;
-border-radius:10px;
-background:linear-gradient(90deg,#6a00ff,#00c3ff);
-color:white;
-cursor:pointer;
-margin-top:15px;
-}
-
-button:hover{
-opacity:0.8;
-}
-
-.highlight{
-color:#00ffae;
-font-weight:bold;
-}
-
-.order{
-background:#111820;
-padding:15px;
-border-radius:15px;
-margin-top:10px;
-}
-
-footer{
-text-align:center;
-padding:40px;
-background:#0f141b;
-font-size:14px;
-opacity:0.7;
-border-top:1px solid rgba(255,255,255,0.1);
-}
-
+body{margin:0;font-family:Poppins;background:#0f172a;color:white}
+header{background:#1e293b;padding:25px;text-align:center;font-size:26px;font-weight:700}
+section{max-width:1100px;margin:auto;padding:40px}
+.card{background:#1e293b;padding:25px;border-radius:12px;margin-bottom:25px}
+select,input,textarea{width:100%;padding:12px;margin-top:10px;border-radius:8px;border:none;background:#0f172a;color:white}
+button{margin-top:15px;padding:12px;background:#2563eb;border:none;border-radius:8px;color:white;cursor:pointer}
+button:hover{opacity:.85}
+.highlight{color:#22c55e;font-weight:600}
+.orderBox{background:#0f172a;padding:15px;border-radius:8px;margin-top:15px}
+footer{text-align:center;padding:20px;background:#1e293b}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+td{border:1px solid #333;padding:8px}
+.copyBtn{background:#16a34a}
 </style>
 </head>
 <body>
 
-<header>
-<h1>NOVA WEB</h1>
-<p>Professional Digital Solutions</p>
-</header>
-
-<!-- ================= HAKKIMIZDA ================= -->
+<header>NOVA WEB STUDIO</header>
 
 <section>
-<h2>Hakkımızda</h2>
+
 <div class="card">
-<p>Profesyonel oyun ve yazılım projeleri geliştiriyoruz.</p>
-<p>© <span id="year"></span> NovaWeb Studio</p>
-</div>
-</section>
-
-<!-- ================= SİPARİŞ ================= -->
-
-<section>
 <h2>Sipariş Oluştur</h2>
 
-<div class="card">
+<form id="orderForm" action="https://formspree.io/f/mqedongz" method="POST">
 
 <select id="category">
 <option value="">Kategori Seç</option>
-<option value="game">Oyun Projesi</option>
-<option value="software">Yazılım Projesi</option>
-<option value="web">Web Projesi</option>
+<option value="Oyun">Oyun</option>
+<option value="Yazılım">Yazılım</option>
+<option value="Web">Web</option>
 </select>
 
 <div id="subContainer"></div>
 
 <h3>Ek Özellikler</h3>
-
 <label><input type="checkbox" class="feature" data-price="15000"> Özel Grafik (+15K)</label><br>
 <label><input type="checkbox" class="feature" data-price="20000"> AI Sistem (+20K)</label><br>
-<label><input type="checkbox" class="feature" data-price="25000"> Leaderboard (+25K)</label><br>
-<label><input type="checkbox" class="feature" data-price="12000"> Admin Panel (+12K)</label><br>
+<label><input type="checkbox" class="feature" data-price="25000"> Multiplayer (+25K)</label><br>
 
-<!-- KUPON -->
-
-<h3>Kupon Kodu</h3>
+<h3>Kupon</h3>
 <input type="text" id="coupon" placeholder="NOVA10 / NOVA20 / NOVA25">
 
 <h3 id="totalPrice">Toplam: 0 TL</h3>
 
-<input type="text" id="name" placeholder="Ad">
-<input type="email" id="email" placeholder="Email">
-<textarea id="note" placeholder="Proje Detayı"></textarea>
+<input type="text" id="name" name="Ad Soyad" placeholder="Ad Soyad" required>
+<input type="email" id="email" name="Email" placeholder="Email" required>
+<textarea id="note" name="Proje Detayı" placeholder="Proje Detayı"></textarea>
 
-<button onclick="createOrder()">Sipariş Ver</button>
+<input type="hidden" name="Sipariş Kodu" id="mailCode">
+<input type="hidden" name="Kategori" id="mailCategory">
+<input type="hidden" name="Alt Kategori" id="mailSub">
+<input type="hidden" name="Seçilen Özellikler" id="mailFeatures">
+<input type="hidden" name="Toplam Fiyat" id="mailTotal">
+
+<button type="button" onclick="createOrder()">Sipariş Ver</button>
+
+</form>
 
 <div id="orderResult"></div>
 
-<!-- IBAN -->
-
-<div id="paymentInfo" style="display:none;margin-top:20px;padding:20px;background:#0f141b;border-radius:15px">
+<div id="paymentInfo" style="display:none;margin-top:20px">
 <p><b>IBAN:</b></p>
 <p class="highlight">TR44 0006 2000 0690 0006 8490 45</p>
-<p>Hesap: Mustafa Çivi</p>
+<p><b>Hesap Sahibi:</b> Mustafa Çivi</p>
+<p>Açıklamaya sipariş kodunu yazınız.</p>
 </div>
 
 </div>
-</section>
 
-<!-- ================= TRACK ================= -->
-
-<section>
-<h2>Sipariş Sorgula</h2>
 <div class="card">
+<h2>Sipariş Sorgula</h2>
 <input type="text" id="trackCode" placeholder="Sipariş Kodunu Gir">
 <button onclick="searchOrder()">Sorgula</button>
 <div id="trackResult"></div>
 </div>
-</section>
 
-<!-- ================= YORUM ================= -->
-
-<section>
-<h2>Yorumlar</h2>
 <div class="card">
-
+<h2>Yorumlar</h2>
 <input type="text" id="commentName" placeholder="Ad">
 <textarea id="commentText" placeholder="Yorum"></textarea>
-
-<select id="rating">
-<option value="5">5 ⭐</option>
-<option value="4">4 ⭐</option>
-<option value="3">3 ⭐</option>
-<option value="2">2 ⭐</option>
-<option value="1">1 ⭐</option>
-</select>
-
 <button onclick="addComment()">Yorum Gönder</button>
-
 <div id="commentsList"></div>
-
 </div>
+
 </section>
 
-<footer>
-© <span id="footerYear"></span> NovaWeb Studio
-</footer>
-
-<!-- ================= SCRIPT ================= -->
+<footer>© 2026 NovaWeb Studio</footer>
 
 <script type="module">
 
@@ -205,7 +102,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore, collection, addDoc, getDocs, query, where, serverTimestamp }
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const firebaseConfig = {
+const firebaseConfig={
 apiKey:"AIzaSyAnXPvCmQSecCk4pTx5NVYNxUcTaP6HAwA",
 authDomain:"novawebstudio-51341.firebaseapp.com",
 projectId:"novawebstudio-51341",
@@ -214,122 +111,79 @@ messagingSenderId:"1024575965449",
 appId:"1:1024575965449:web:a520edc17a8afd0d66abd8"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
 
-document.getElementById("year").innerText=new Date().getFullYear();
-document.getElementById("footerYear").innerText=new Date().getFullYear();
-
-/* ================= CATEGORY ================= */
-
-let selectedPrice = 0;
-let discountPercent = 0;
+let selectedPrice=0;
+let discountPercent=0;
+let selectedSub="";
 
 document.getElementById("category").addEventListener("change",function(){
-
-let cat=this.value;
 selectedPrice=0;
+selectedSub="";
 document.getElementById("totalPrice").innerText="Toplam: 0 TL";
+let c=document.getElementById("subContainer");
+c.innerHTML="";
 
-let container=document.getElementById("subContainer");
-container.innerHTML="";
-
-if(cat==="game"){
-container.innerHTML=`
-<h3>Oyun Türü</h3>
-<select id="subSelect">
-<option value="30000">2D (+30K)</option>
-<option value="60000">3D (+60K)</option>
-<option value="90000">Multiplayer (+90K)</option>
-</select>
-`;
+if(this.value==="Oyun"){
+c.innerHTML=`<select id="subSelect">
+<option value="30000">2D Oyun (+30K)</option>
+<option value="60000">3D Oyun (+60K)</option>
+<option value="90000">AAA Multiplayer (+90K)</option>
+</select>`;
 }
-
-else if(cat==="software"){
-container.innerHTML=`
-<h3>Yazılım Türü</h3>
-<select id="subSelect">
+if(this.value==="Yazılım"){
+c.innerHTML=`<select id="subSelect">
 <option value="40000">Desktop (+40K)</option>
-<option value="70000">Cloud (+70K)</option>
-<option value="120000">Enterprise (+120K)</option>
-</select>
-`;
+<option value="80000">Enterprise (+80K)</option>
+</select>`;
 }
-
-else if(cat==="web"){
-container.innerHTML=`
-<h3>Web Türü</h3>
-<select id="subSelect">
+if(this.value==="Web"){
+c.innerHTML=`<select id="subSelect">
 <option value="25000">Kurumsal (+25K)</option>
-<option value="50000">E-Ticaret (+50K)</option>
-<option value="80000">Platform (+80K)</option>
-</select>
-`;
+<option value="70000">E-Ticaret (+70K)</option>
+</select>`;
 }
 
 setTimeout(()=>{
-
 let sub=document.getElementById("subSelect");
 if(sub){
 sub.addEventListener("change",function(){
 selectedPrice=parseInt(this.value)||0;
+selectedSub=this.options[this.selectedIndex].text;
 calculatePrice();
 });
 }
-
-},200);
-
+},100);
 });
 
-/* ================= FEATURES ================= */
-
-document.querySelectorAll(".feature").forEach(ch=>{
-ch.addEventListener("change",calculatePrice);
+document.querySelectorAll(".feature").forEach(f=>{
+f.addEventListener("change",calculatePrice);
 });
-
-/* ================= KUPON ================= */
 
 document.getElementById("coupon").addEventListener("input",function(){
-
-let code=this.value.toUpperCase();
-
-if(code==="NOVA10") discountPercent=10;
-else if(code==="NOVA20") discountPercent=20;
-else if(code==="NOVA25") discountPercent=25;
+let c=this.value.toUpperCase();
+if(c==="NOVA10") discountPercent=10;
+else if(c==="NOVA20") discountPercent=20;
+else if(c==="NOVA25") discountPercent=25;
 else discountPercent=0;
-
 calculatePrice();
-
 });
 
-/* ================= PRICE ================= */
-
 function calculatePrice(){
-
 let total=selectedPrice;
-
 document.querySelectorAll(".feature:checked").forEach(f=>{
 total+=parseInt(f.dataset.price);
 });
-
 if(discountPercent>0){
-total = total - (total * discountPercent / 100);
+total-=total*discountPercent/100;
+}
+document.getElementById("totalPrice").innerText="Toplam: "+Math.floor(total)+" TL";
 }
 
-document.getElementById("totalPrice").innerText=
-"Toplam: "+Math.floor(total)+" TL";
+window.createOrder=async function(){
 
-}
-
-/* ================= ORDER ================= */
-
-window.createOrder = async function(){
-
-let category=document.getElementById("category").value;
-if(!category){
-alert("Kategori seç");
-return;
-}
+if(!selectedPrice){alert("Kategori seç");return;}
 
 let code="NW-"+Math.random().toString(36).substr(2,6).toUpperCase();
 
@@ -338,87 +192,71 @@ document.querySelectorAll(".feature:checked").forEach(f=>{
 features.push(f.parentElement.innerText.trim());
 });
 
+let totalText=document.getElementById("totalPrice").innerText;
+
 await addDoc(collection(db,"orders"),{
-category,
-price:selectedPrice,
+code,
+category:document.getElementById("category").value,
+sub:selectedSub,
 features,
+total:totalText,
 name:document.getElementById("name").value,
 email:document.getElementById("email").value,
 note:document.getElementById("note").value,
-code,
 status:"Bekliyor",
 createdAt:serverTimestamp()
 });
 
-document.getElementById("orderResult").innerHTML=
-"<p class='highlight'>Sipariş Oluşturuldu ✔ Kod: "+code+"</p>";
+document.getElementById("mailCode").value=code;
+document.getElementById("mailCategory").value=document.getElementById("category").value;
+document.getElementById("mailSub").value=selectedSub;
+document.getElementById("mailFeatures").value=features.join(", ");
+document.getElementById("mailTotal").value=totalText;
+
+document.getElementById("orderForm").submit();
+
+document.getElementById("orderResult").innerHTML=`
+<div class="orderBox">
+<p class="highlight">Sipariş oluşturuldu</p>
+<p>Sipariş Kodunuz: <b id="codeText">${code}</b></p>
+<button class="copyBtn" onclick="navigator.clipboard.writeText('${code}')">Kopyala</button>
+</div>`;
 
 document.getElementById("paymentInfo").style.display="block";
 
-}
-
-/* ================= TRACK ================= */
+};
 
 window.searchOrder=async function(){
-
 let code=document.getElementById("trackCode").value;
-
 let q=query(collection(db,"orders"),where("code","==",code));
 let snap=await getDocs(q);
-
 let found=null;
 snap.forEach(doc=>found=doc.data());
-
-if(!found){
-document.getElementById("trackResult").innerText="❌ Bulunamadı";
-return;
-}
-
+if(!found){document.getElementById("trackResult").innerText="Bulunamadı";return;}
 document.getElementById("trackResult").innerHTML=
-"<div class='order'><p>Durum: "+found.status+
-"</p><p>Kategori: "+found.category+
-"</p></div>";
-}
-
-/* ================= YORUM ================= */
+"<div class='orderBox'>Durum: "+found.status+"</div>";
+};
 
 window.addComment=async function(){
-
 let name=document.getElementById("commentName").value;
 let text=document.getElementById("commentText").value;
-let rating=document.getElementById("rating").value;
-
-await addDoc(collection(db,"comments"),{
-name,text,rating,
-createdAt:serverTimestamp()
-});
-
+if(text.length<5){alert("Yorum çok kısa");return;}
+await addDoc(collection(db,"comments"),{name,text,createdAt:serverTimestamp()});
 loadComments();
-}
+};
 
 async function loadComments(){
-
 let snap=await getDocs(collection(db,"comments"));
 let html="";
-
 snap.forEach(doc=>{
 let d=doc.data();
-
-html+=`
-<div class="order">
-<p><b>${d.name}</b></p>
-<p>${"⭐".repeat(d.rating)}</p>
-<p>${d.text}</p>
-</div>
-`;
+html+=`<div class="orderBox"><b>${d.name}</b><p>${d.text}</p></div>`;
 });
-
 document.getElementById("commentsList").innerHTML=html;
 }
 
 loadComments();
 
 </script>
-
 </body>
 </html>
