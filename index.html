@@ -19,11 +19,18 @@ font-size:22px;
 font-weight:600;
 }
 
-.section{padding:50px 10%;}
+.container{
+display:flex;
+gap:30px;
+padding:40px 5%;
+}
+
+/* PRODUCTS */
 
 .products{
+flex:3;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
 
@@ -35,24 +42,21 @@ box-shadow:0 5px 20px rgba(0,0,0,0.05);
 transition:0.3s;
 }
 
-.product:hover{
-transform:translateY(-5px);
-}
+.product:hover{transform:translateY(-5px);}
 
-.product h3{
+.product h3{margin-bottom:10px;}
+
+.features{
+font-size:13px;
+opacity:0.8;
 margin-bottom:10px;
 }
 
-.desc{
-font-size:14px;
-opacity:0.7;
-margin-bottom:10px;
-min-height:40px;
-}
+.features li{margin-left:15px;}
 
 .price{
 font-weight:700;
-margin-bottom:10px;
+margin:10px 0;
 color:#6a00ff;
 }
 
@@ -67,23 +71,53 @@ cursor:pointer;
 font-weight:600;
 }
 
+/* CART */
+
 .cart{
-margin-top:50px;
+flex:1;
 background:white;
-padding:30px;
+padding:20px;
 border-radius:15px;
 box-shadow:0 5px 20px rgba(0,0,0,0.05);
+position:sticky;
+top:20px;
+height:fit-content;
 }
 
 .cart-item{
 display:flex;
 justify-content:space-between;
+align-items:center;
 margin-bottom:10px;
+font-size:13px;
+}
+
+.qty{
+display:flex;
+gap:5px;
+align-items:center;
+}
+
+.qty button{
+padding:2px 8px;
+border:none;
+background:#ddd;
+cursor:pointer;
+}
+
+.remove{
+color:red;
+cursor:pointer;
+font-size:12px;
+}
+
+.summary{
+margin-top:15px;
 font-size:14px;
 }
 
 .total{
-margin-top:15px;
+margin-top:10px;
 font-size:18px;
 font-weight:700;
 color:#6a00ff;
@@ -92,18 +126,18 @@ color:#6a00ff;
 .coupon{
 margin-top:15px;
 display:flex;
-gap:10px;
+gap:5px;
 }
 
 .coupon input{
 flex:1;
-padding:8px;
-border-radius:6px;
+padding:6px;
 border:1px solid #ddd;
+border-radius:6px;
 }
 
 .coupon button{
-padding:8px 15px;
+padding:6px 10px;
 border:none;
 border-radius:6px;
 background:#00c853;
@@ -112,11 +146,11 @@ cursor:pointer;
 }
 
 .checkout{
-margin-top:20px;
+margin-top:15px;
 width:100%;
-padding:12px;
+padding:10px;
 border:none;
-border-radius:10px;
+border-radius:8px;
 background:#6a00ff;
 color:white;
 font-weight:600;
@@ -129,27 +163,42 @@ cursor:pointer;
 
 <header>NovaWebStudio Proje Sepeti</header>
 
-<section class="section">
+<div class="container">
 
 <div class="products">
 
 <div class="product">
 <h3>Kurumsal Web Sitesi</h3>
-<div class="desc">Modern tasarım, mobil uyumlu yapı ve yönetim paneli dahil.</div>
+<ul class="features">
+<li>Modern UI Tasarım</li>
+<li>Mobil Uyumlu</li>
+<li>Yönetim Paneli</li>
+<li>SEO Altyapısı</li>
+</ul>
 <div class="price">₺10000</div>
 <button onclick="addToCart('Kurumsal Web Sitesi',10000)">Sepete Ekle</button>
 </div>
 
 <div class="product">
 <h3>E-Ticaret Sitesi</h3>
-<div class="desc">Ürün yönetimi, ödeme altyapısı ve kargo entegrasyonu.</div>
+<ul class="features">
+<li>Ürün Yönetimi</li>
+<li>Ödeme Sistemi</li>
+<li>Kargo Entegrasyonu</li>
+<li>Stok Takibi</li>
+</ul>
 <div class="price">₺15000</div>
 <button onclick="addToCart('E-Ticaret Sitesi',15000)">Sepete Ekle</button>
 </div>
 
 <div class="product">
 <h3>Domain + Hosting</h3>
-<div class="desc">1 yıllık alan adı ve hızlı hosting paketi.</div>
+<ul class="features">
+<li>1 Yıllık Alan Adı</li>
+<li>SSL Sertifikası</li>
+<li>Hızlı Sunucu</li>
+<li>7/24 Destek</li>
+</ul>
 <div class="price">₺3000</div>
 <button onclick="addToCart('Domain + Hosting',3000)">Sepete Ekle</button>
 </div>
@@ -157,69 +206,103 @@ cursor:pointer;
 </div>
 
 <div class="cart">
-
 <h3>Sepetim</h3>
 <div id="cartItems"></div>
 
 <div class="coupon">
-<input type="text" id="couponCode" placeholder="Kupon kodu gir">
+<input type="text" id="couponCode" placeholder="Kupon kodu">
 <button onclick="applyCoupon()">Uygula</button>
 </div>
 
+<div class="summary">
+Ara Toplam: ₺<span id="subtotal">0</span><br>
+İndirim: ₺<span id="discount">0</span>
+</div>
+
 <div class="total">
-Toplam: ₺<span id="totalPrice">0</span>
+Genel Toplam: ₺<span id="total">0</span>
 </div>
 
 <button class="checkout" onclick="checkout()">Talep Gönder</button>
-
 </div>
 
-</section>
+</div>
 
 <script>
 
 let cart = [];
-let discount = 0;
+let discountRate = 0;
 
 function addToCart(name,price){
-cart.push({name,price});
+let existing = cart.find(item => item.name === name);
+if(existing){
+existing.qty++;
+}else{
+cart.push({name,price,qty:1});
+}
 renderCart();
 }
 
 function renderCart(){
 let container = document.getElementById("cartItems");
 container.innerHTML="";
-let total = 0;
+let subtotal = 0;
 
-cart.forEach(item=>{
-total += item.price;
+cart.forEach((item,index)=>{
+subtotal += item.price * item.qty;
+
 container.innerHTML += `
 <div class="cart-item">
-<span>${item.name}</span>
-<span>₺${item.price}</span>
+<div>
+${item.name}
+<div class="remove" onclick="removeItem(${index})">Sil</div>
+</div>
+
+<div class="qty">
+<button onclick="changeQty(${index},-1)">-</button>
+${item.qty}
+<button onclick="changeQty(${index},1)">+</button>
+</div>
+
+<div>₺${item.price * item.qty}</div>
 </div>
 `;
 });
 
-total = total - discount;
-if(total < 0) total = 0;
+let discount = subtotal * discountRate;
+let total = subtotal - discount;
 
-document.getElementById("totalPrice").innerText = total;
+document.getElementById("subtotal").innerText = subtotal;
+document.getElementById("discount").innerText = discount;
+document.getElementById("total").innerText = total;
+}
+
+function changeQty(index,amount){
+cart[index].qty += amount;
+if(cart[index].qty <= 0){
+cart.splice(index,1);
+}
+renderCart();
+}
+
+function removeItem(index){
+cart.splice(index,1);
+renderCart();
 }
 
 function applyCoupon(){
 let code = document.getElementById("couponCode").value;
 
 if(code === "INDIRIM10"){
-discount = 1000;
-alert("₺1000 indirim uygulandı 🎉");
+discountRate = 0.10;
+alert("%10 indirim uygulandı 🎉");
 }
 else if(code === "PRO20"){
-discount = 2000;
-alert("₺2000 indirim uygulandı 🎉");
+discountRate = 0.20;
+alert("%20 indirim uygulandı 🎉");
 }
 else{
-discount = 0;
+discountRate = 0;
 alert("Geçersiz kupon");
 }
 
