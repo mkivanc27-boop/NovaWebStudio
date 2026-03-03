@@ -20,7 +20,6 @@ padding:40px;
 text-align:center;
 font-size:32px;
 font-weight:700;
-letter-spacing:2px;
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(10px);
 }
@@ -70,16 +69,6 @@ opacity:0.8;
 transform:scale(1.05);
 }
 
-footer{
-text-align:center;
-padding:30px;
-background:rgba(0,0,0,0.3);
-margin-top:60px;
-font-size:14px;
-}
-
-/* FAQ */
-
 .faq{
 cursor:pointer;
 padding:18px;
@@ -98,8 +87,6 @@ display:none;
 padding-top:10px;
 opacity:0.8;
 }
-
-/* Tabs */
 
 .tabs{
 display:flex;
@@ -132,6 +119,14 @@ display:none;
 display:block;
 }
 
+footer{
+text-align:center;
+padding:30px;
+background:rgba(0,0,0,0.3);
+margin-top:60px;
+font-size:14px;
+}
+
 </style>
 </head>
 <body>
@@ -149,18 +144,18 @@ NOVA WEB STUDIO
 <h2>Hakkımızda</h2>
 
 <p>
-NovaWeb Studio modern web teknolojileri, oyun geliştirme ve yazılım çözümleri üreten profesyonel bir dijital stüdyodur.
-Projelerimiz performans odaklı ve özel tasarımla geliştirilir.
+NovaWeb Studio modern web, oyun ve yazılım projeleri geliştiren profesyonel bir dijital stüdyodur.
+Projeler sıfırdan özel olarak kodlanır ve performans odaklıdır.
 </p>
 
 <p>
-Her sistem sıfırdan kodlanır. Hazır şablon kullanılmaz.
-Test süreci tamamlandıktan sonra projeler teslim edilir.
+Kod yapımız temiz, ölçeklenebilir ve güvenlidir.
+Teslim öncesi test süreci uygulanır.
 </p>
 
 </div>
 
-<!-- ================= KATEGORİ ================= -->
+<!-- ================= KATEGORİLER ================= -->
 
 <div class="card">
 
@@ -173,15 +168,15 @@ Test süreci tamamlandıktan sonra projeler teslim edilir.
 </div>
 
 <div id="web" class="content active">
-<p>Modern web siteleri, e-ticaret sistemleri ve dashboard projeleri.</p>
+<p>Kurumsal siteler, e-ticaret ve özel dashboard sistemleri.</p>
 </div>
 
 <div id="game" class="content">
-<p>Unity tabanlı oyunlar, multiplayer sistemler ve oyun backend geliştirme.</p>
+<p>Unity tabanlı oyunlar ve multiplayer sistemler.</p>
 </div>
 
 <div id="software" class="content">
-<p>Özel otomasyon yazılımları ve kurumsal sistem geliştirme.</p>
+<p>Otomasyon yazılımları ve kurumsal backend çözümleri.</p>
 </div>
 
 </div>
@@ -195,40 +190,38 @@ Test süreci tamamlandıktan sonra projeler teslim edilir.
 <div class="faq" onclick="toggleFaq(this)">
 Proje süresi ne kadar?
 <div class="answer">
-Projenin büyüklüğüne göre değişir. Küçük projeler birkaç gün, büyük projeler haftalar sürebilir.
+Projenin büyüklüğüne bağlıdır. Küçük projeler birkaç gün, büyük sistemler haftalar sürebilir.
 </div>
 </div>
 
 <div class="faq" onclick="toggleFaq(this)">
 Ödeme nasıl yapılıyor?
 <div class="answer">
-Anlaşmaya göre ödeme yapılır. Genellikle IBAN üzerinden gerçekleşir.
+Genellikle IBAN üzerinden ödeme alınır veya anlaşmaya bağlı yöntem belirlenir.
 </div>
 </div>
 
 <div class="faq" onclick="toggleFaq(this)">
-Destek sağlıyor musunuz?
+Destek veriyor musunuz?
 <div class="answer">
-Evet. Proje sonrası teknik destek ve bakım hizmeti veriyoruz.
+Evet. Proje sonrası teknik destek ve bakım hizmeti sunulmaktadır.
 </div>
 </div>
 
 </div>
 
-<!-- ================= SİPARİŞ + WHATSAPP ================= -->
+<!-- ================= WHATSAPP ================= -->
 
 <div class="card" style="text-align:center;">
 
 <h2>Sipariş Vermek İster Misiniz?</h2>
 
-<p>
-Projenizi başlatmak veya teklif almak için WhatsApp üzerinden bizimle iletişime geçin.
-</p>
+<p>Bizimle WhatsApp üzerinden iletişime geçebilirsiniz.</p>
 
 <button onclick="goWhatsApp()">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-width="22">
-WhatsApp Üzerinden Sipariş Ver
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+width="24">
+WhatsApp Üzerinden İletişim
 </button>
 
 </div>
@@ -241,7 +234,7 @@ WhatsApp Üzerinden Sipariş Ver
 
 <script>
 
-/* TAB */
+/* ================= TAB ================= */
 
 function openTab(id){
 
@@ -255,32 +248,46 @@ t.classList.remove("active");
 
 document.getElementById(id).classList.add("active");
 event.target.classList.add("active");
+
 }
 
-/* FAQ */
+/* ================= FAQ ================= */
 
 function toggleFaq(element){
 
 let answer=element.querySelector(".answer");
 
-if(answer.style.display==="block"){
-answer.style.display="none";
-}else{
-answer.style.display="block";
-}
+answer.style.display =
+answer.style.display==="block" ? "none" : "block";
 
 }
 
-/* WHATSAPP */
+/* ================= WHATSAPP ================= */
 
 function goWhatsApp(){
 
-let message = encodeURIComponent("NovaWeb üzerinden proje hakkında bilgi almak istiyorum.");
+let message = encodeURIComponent(
+"NovaWeb üzerinden proje hakkında bilgi almak istiyorum."
+);
 
-window.location.href =
-"https://wa.me/905319314318?text=" + message;
+window.open(
+"https://wa.me/905319314318?text="+message,
+"_blank"
+);
 
 }
+
+/* ================= KORUMA ================= */
+
+document.addEventListener("contextmenu",e=>e.preventDefault());
+
+document.onkeydown=function(e){
+
+if(e.keyCode==123) return false;
+if(e.ctrlKey && e.shiftKey && e.keyCode==73) return false;
+if(e.ctrlKey && e.keyCode==85) return false;
+
+};
 
 </script>
 
