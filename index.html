@@ -3,260 +3,249 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NovaWeb Studio</title>
+<title>NovaWeb Studio | Hakkımızda</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-body{margin:0;font-family:Poppins;background:#0f172a;color:white}
-header{background:#1e293b;padding:25px;text-align:center;font-size:26px;font-weight:700}
-section{max-width:1100px;margin:auto;padding:40px}
-.card{background:#1e293b;padding:25px;border-radius:12px;margin-bottom:25px}
-select,input,textarea{width:100%;padding:12px;margin-top:10px;border-radius:8px;border:none;background:#0f172a;color:white}
-button{margin-top:15px;padding:12px;background:#2563eb;border:none;border-radius:8px;color:white;cursor:pointer}
-button:hover{opacity:.85}
-.highlight{color:#22c55e;font-weight:600}
-.orderBox{background:#0f172a;padding:15px;border-radius:8px;margin-top:15px}
-footer{text-align:center;padding:20px;background:#1e293b}
-table{width:100%;border-collapse:collapse;margin-top:10px}
-td{border:1px solid #333;padding:8px}
-.copyBtn{background:#16a34a}
+
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
+color:white;
+}
+
+header{
+padding:40px;
+text-align:center;
+font-size:32px;
+font-weight:700;
+letter-spacing:2px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+}
+
+section{
+max-width:1100px;
+margin:auto;
+padding:60px 20px;
+}
+
+/* ===== CARD ===== */
+
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(25px);
+padding:35px;
+border-radius:25px;
+margin-bottom:30px;
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h2{
+margin-top:0;
+color:#22c55e;
+}
+
+/* ===== FAQ ===== */
+
+.faq{
+cursor:pointer;
+padding:18px;
+background:#1e293b;
+border-radius:15px;
+margin-top:15px;
+transition:0.3s;
+}
+
+.faq:hover{
+background:#27354a;
+}
+
+.answer{
+display:none;
+padding:15px;
+opacity:0.8;
+}
+
+/* ===== KATEGORİ TABS ===== */
+
+.tabs{
+display:flex;
+gap:15px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+.tab{
+padding:10px 18px;
+background:#2563eb;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.tab:hover{
+opacity:0.8;
+}
+
+.tab.active{
+background:#22c55e;
+}
+
+.content{
+display:none;
+}
+
+.content.active{
+display:block;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:rgba(0,0,0,0.3);
+margin-top:60px;
+font-size:14px;
+}
+
 </style>
 </head>
 <body>
 
-<header>NOVA WEB STUDIO</header>
+<header>
+NOVA WEB STUDIO
+</header>
 
 <section>
 
+<!-- ================= GENEL ================= -->
+
 <div class="card">
-<h2>Sipariş Oluştur</h2>
+<h2>Hakkımızda</h2>
 
-<form id="orderForm" action="https://formspree.io/f/mqedongz" method="POST">
+<p>
+NovaWeb Studio, modern web teknolojileri, oyun geliştirme ve yazılım çözümleri üreten profesyonel bir dijital stüdyodur.
+Amacımız performanslı, güvenli ve ölçeklenebilir sistemler üretmektir.
+</p>
 
-<select id="category">
-<option value="">Kategori Seç</option>
-<option value="Oyun">Oyun</option>
-<option value="Yazılım">Yazılım</option>
-<option value="Web">Web</option>
-</select>
+<p>
+Projelerimiz sıfırdan geliştirilir. Hazır şablon kullanmadan, müşterinin ihtiyacına özel kod mimarisi oluşturulur.
+Teslim öncesi detaylı test süreci uygulanır.
+</p>
 
-<div id="subContainer"></div>
+</div>
 
-<h3>Ek Özellikler</h3>
-<label><input type="checkbox" class="feature" data-price="15000"> Özel Grafik (+15K)</label><br>
-<label><input type="checkbox" class="feature" data-price="20000"> AI Sistem (+20K)</label><br>
-<label><input type="checkbox" class="feature" data-price="25000"> Multiplayer (+25K)</label><br>
+<!-- ================= KATEGORİLER ================= -->
 
-<h3>Kupon</h3>
-<input type="text" id="coupon" placeholder="NOVA10 / NOVA20 / NOVA25">
+<div class="card">
 
-<h3 id="totalPrice">Toplam: 0 TL</h3>
+<h2>Kategoriler</h2>
 
-<input type="text" id="name" name="Ad Soyad" placeholder="Ad Soyad" required>
-<input type="email" id="email" name="Email" placeholder="Email" required>
-<textarea id="note" name="Proje Detayı" placeholder="Proje Detayı"></textarea>
+<div class="tabs">
+<div class="tab active" onclick="openTab('web')">Web Geliştirme</div>
+<div class="tab" onclick="openTab('game')">Oyun Geliştirme</div>
+<div class="tab" onclick="openTab('software')">Yazılım Çözümleri</div>
+</div>
 
-<input type="hidden" name="Sipariş Kodu" id="mailCode">
-<input type="hidden" name="Kategori" id="mailCategory">
-<input type="hidden" name="Alt Kategori" id="mailSub">
-<input type="hidden" name="Seçilen Özellikler" id="mailFeatures">
-<input type="hidden" name="Toplam Fiyat" id="mailTotal">
+<div id="web" class="content active">
+<p>
+Modern UI tasarımlar, e-ticaret sistemleri, kurumsal siteler ve özel dashboard projeleri geliştiriyoruz.
+SEO optimizasyonu ve performans odaklı kod yazımı uygulanır.
+</p>
+</div>
 
-<button type="button" onclick="createOrder()">Sipariş Ver</button>
+<div id="game" class="content">
+<p>
+Unity / Web tabanlı oyun sistemleri, sunucu paneli entegrasyonu ve oyun backend yapıları geliştiriyoruz.
+Performans ve multiplayer sistemleri üzerine yoğunlaşırız.
+</p>
+</div>
 
-</form>
-
-<div id="orderResult"></div>
-
-<div id="paymentInfo" style="display:none;margin-top:20px">
-<p><b>IBAN:</b></p>
-<p class="highlight">TR44 0006 2000 0690 0006 8490 45</p>
-<p><b>Hesap Sahibi:</b> Mustafa Çivi</p>
-<p>Açıklamaya sipariş kodunu yazınız.</p>
+<div id="software" class="content">
+<p>
+Özel otomasyon sistemleri, API geliştirme, database mimarisi ve işletme yazılımları yapıyoruz.
+Kurumsal firmalara özel çözümler üretiyoruz.
+</p>
 </div>
 
 </div>
 
-<div class="card">
-<h2>Sipariş Sorgula</h2>
-<input type="text" id="trackCode" placeholder="Sipariş Kodunu Gir">
-<button onclick="searchOrder()">Sorgula</button>
-<div id="trackResult"></div>
-</div>
+<!-- ================= FAQ ================= -->
 
 <div class="card">
-<h2>Yorumlar</h2>
-<input type="text" id="commentName" placeholder="Ad">
-<textarea id="commentText" placeholder="Yorum"></textarea>
-<button onclick="addComment()">Yorum Gönder</button>
-<div id="commentsList"></div>
+
+<h2>Çok Sorulan Sorular</h2>
+
+<div class="faq" onclick="toggleFaq(this)">
+Proje süresi ne kadar?
+<div class="answer">
+Projenin büyüklüğüne göre değişir. Küçük projeler birkaç gün, büyük projeler haftalar sürebilir.
+</div>
+</div>
+
+<div class="faq" onclick="toggleFaq(this)">
+Ödeme nasıl yapılıyor?
+<div class="answer">
+Sipariş sonrası IBAN üzerinden ödeme alınır veya anlaşmaya bağlı sistem belirlenir.
+</div>
+</div>
+
+<div class="faq" onclick="toggleFaq(this)">
+Destek sağlıyor musunuz?
+<div class="answer">
+Evet. Teslim sonrası teknik destek ve bakım hizmeti sunulmaktadır.
+</div>
+</div>
+
 </div>
 
 </section>
 
-<footer>© 2026 NovaWeb Studio</footer>
+<footer>
+© 2026 NovaWeb Studio – Tüm Hakları Saklıdır.
+</footer>
 
-<script type="module">
+<script>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, where, serverTimestamp }
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+/* ===== TAB SWITCH ===== */
 
-const firebaseConfig={
-apiKey:"AIzaSyAnXPvCmQSecCk4pTx5NVYNxUcTaP6HAwA",
-authDomain:"novawebstudio-51341.firebaseapp.com",
-projectId:"novawebstudio-51341",
-storageBucket:"novawebstudio-51341.firebasestorage.app",
-messagingSenderId:"1024575965449",
-appId:"1:1024575965449:web:a520edc17a8afd0d66abd8"
-};
+function openTab(id){
 
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
+document.querySelectorAll(".content").forEach(c=>{
+c.classList.remove("active");
+});
 
-let selectedPrice=0;
-let discountPercent=0;
-let selectedSub="";
+document.querySelectorAll(".tab").forEach(t=>{
+t.classList.remove("active");
+});
 
-document.getElementById("category").addEventListener("change",function(){
-selectedPrice=0;
-selectedSub="";
-document.getElementById("totalPrice").innerText="Toplam: 0 TL";
-let c=document.getElementById("subContainer");
-c.innerHTML="";
+document.getElementById(id).classList.add("active");
 
-if(this.value==="Oyun"){
-c.innerHTML=`<select id="subSelect">
-<option value="30000">2D Oyun (+30K)</option>
-<option value="60000">3D Oyun (+60K)</option>
-<option value="90000">AAA Multiplayer (+90K)</option>
-</select>`;
-}
-if(this.value==="Yazılım"){
-c.innerHTML=`<select id="subSelect">
-<option value="40000">Desktop (+40K)</option>
-<option value="80000">Enterprise (+80K)</option>
-</select>`;
-}
-if(this.value==="Web"){
-c.innerHTML=`<select id="subSelect">
-<option value="25000">Kurumsal (+25K)</option>
-<option value="70000">E-Ticaret (+70K)</option>
-</select>`;
+event.target.classList.add("active");
 }
 
-setTimeout(()=>{
-let sub=document.getElementById("subSelect");
-if(sub){
-sub.addEventListener("change",function(){
-selectedPrice=parseInt(this.value)||0;
-selectedSub=this.options[this.selectedIndex].text;
-calculatePrice();
-});
+/* ===== FAQ ACCORDION ===== */
+
+function toggleFaq(element){
+
+let answer=element.querySelector(".answer");
+
+if(answer.style.display==="block"){
+answer.style.display="none";
 }
-},100);
-});
-
-document.querySelectorAll(".feature").forEach(f=>{
-f.addEventListener("change",calculatePrice);
-});
-
-document.getElementById("coupon").addEventListener("input",function(){
-let c=this.value.toUpperCase();
-if(c==="NOVA10") discountPercent=10;
-else if(c==="NOVA20") discountPercent=20;
-else if(c==="NOVA25") discountPercent=25;
-else discountPercent=0;
-calculatePrice();
-});
-
-function calculatePrice(){
-let total=selectedPrice;
-document.querySelectorAll(".feature:checked").forEach(f=>{
-total+=parseInt(f.dataset.price);
-});
-if(discountPercent>0){
-total-=total*discountPercent/100;
-}
-document.getElementById("totalPrice").innerText="Toplam: "+Math.floor(total)+" TL";
+else{
+answer.style.display="block";
 }
 
-window.createOrder=async function(){
-
-if(!selectedPrice){alert("Kategori seç");return;}
-
-let code="NW-"+Math.random().toString(36).substr(2,6).toUpperCase();
-
-let features=[];
-document.querySelectorAll(".feature:checked").forEach(f=>{
-features.push(f.parentElement.innerText.trim());
-});
-
-let totalText=document.getElementById("totalPrice").innerText;
-
-await addDoc(collection(db,"orders"),{
-code,
-category:document.getElementById("category").value,
-sub:selectedSub,
-features,
-total:totalText,
-name:document.getElementById("name").value,
-email:document.getElementById("email").value,
-note:document.getElementById("note").value,
-status:"Bekliyor",
-createdAt:serverTimestamp()
-});
-
-document.getElementById("mailCode").value=code;
-document.getElementById("mailCategory").value=document.getElementById("category").value;
-document.getElementById("mailSub").value=selectedSub;
-document.getElementById("mailFeatures").value=features.join(", ");
-document.getElementById("mailTotal").value=totalText;
-
-document.getElementById("orderForm").submit();
-
-document.getElementById("orderResult").innerHTML=`
-<div class="orderBox">
-<p class="highlight">Sipariş oluşturuldu</p>
-<p>Sipariş Kodunuz: <b id="codeText">${code}</b></p>
-<button class="copyBtn" onclick="navigator.clipboard.writeText('${code}')">Kopyala</button>
-</div>`;
-
-document.getElementById("paymentInfo").style.display="block";
-
-};
-
-window.searchOrder=async function(){
-let code=document.getElementById("trackCode").value;
-let q=query(collection(db,"orders"),where("code","==",code));
-let snap=await getDocs(q);
-let found=null;
-snap.forEach(doc=>found=doc.data());
-if(!found){document.getElementById("trackResult").innerText="Bulunamadı";return;}
-document.getElementById("trackResult").innerHTML=
-"<div class='orderBox'>Durum: "+found.status+"</div>";
-};
-
-window.addComment=async function(){
-let name=document.getElementById("commentName").value;
-let text=document.getElementById("commentText").value;
-if(text.length<5){alert("Yorum çok kısa");return;}
-await addDoc(collection(db,"comments"),{name,text,createdAt:serverTimestamp()});
-loadComments();
-};
-
-async function loadComments(){
-let snap=await getDocs(collection(db,"comments"));
-let html="";
-snap.forEach(doc=>{
-let d=doc.data();
-html+=`<div class="orderBox"><b>${d.name}</b><p>${d.text}</p></div>`;
-});
-document.getElementById("commentsList").innerHTML=html;
 }
-
-loadComments();
 
 </script>
+
 </body>
 </html>
